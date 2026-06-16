@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/decrypt_signature", "destination": "/api/decrypt_signature" },
+    { "source": "/get_sts", "destination": "/api/get_sts" },
+    { "source": "/resolve_url", "destination": "/api/resolve_url" },
+    { "source": "/metrics", "destination": "/api/metrics" }
+  ]
+}
