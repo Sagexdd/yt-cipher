@@ -35,6 +35,7 @@ export async function getPlayerFilePath(playerScript: PlayerScript): Promise<str
                 throw new Error(`Failed to fetch player from ${playerUrl}: ${response.statusText}`);
             }
             const playerContent = await response.text();
+            await fs.mkdir(path.dirname(filePath), { recursive: true });
             await fs.writeFile(filePath, playerContent, 'utf8');
 
             // Update cache size for metrics
