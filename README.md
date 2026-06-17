@@ -16,6 +16,17 @@ Deploy your own instance of the cipher resolver to Vercel with a single click:
 
 ---
 
+## 🌐 Public Instance
+
+A public instance of this service is hosted and maintained for the community:
+
+* **URL**: `https://cipher.lavalink-harmonix.me/`
+
+> [!WARNING]
+> This public instance is provided on a best-effort basis without any guarantees of uptime or performance. For production applications, it is highly recommended to deploy your own private instance using the quick deploy button above.
+
+---
+
 ## ✨ Features
 
 - **Vercel Serverless Ready**: Designed to fit seamlessly into stateless serverless functions without the need for worker pools.
@@ -102,11 +113,9 @@ To use this cipher service in your Lavalink setup:
    ```yaml
    plugins:
      youtube:
-       # If you set API_TOKEN env variable, configure it here:
-       pot:
-         token: "your-api-token"
-       # Point to your deployed Vercel service or local instance
-       cipher-service: "https://your-vercel-subdomain.vercel.app"
+       remoteCipher:
+         url: "https://cipher.lavalink-harmonix.me/"
+         userAgent: "your_service_name" # Optional
    ```
 3. Restart Lavalink. YouTube track loading errors will disappear.
 

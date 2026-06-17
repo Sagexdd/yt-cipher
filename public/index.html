@@ -7,23 +7,24 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
     <!-- Swagger UI CSS -->
     <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@3/swagger-ui.css">
     
     <style>
         /* Custom Modern CSS Variables */
         :root {
-            --bg-color: #080710;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --primary-glow: rgba(139, 92, 246, 0.15);
-            --secondary-glow: rgba(6, 182, 212, 0.15);
+            --bg-color: #0d0e12;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(255, 255, 255, 0.06);
+            --primary-glow: rgba(139, 92, 246, 0.12);
+            --secondary-glow: rgba(6, 182, 212, 0.12);
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
             --accent-purple: #8b5cf6;
             --accent-cyan: #06b6d4;
             --accent-green: #10b981;
+            --accent-yellow: #f59e0b;
         }
 
         body {
@@ -33,6 +34,8 @@
             color: var(--text-primary);
             font-family: 'Plus Jakarta Sans', sans-serif;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             overflow-x: hidden;
             position: relative;
         }
@@ -40,22 +43,22 @@
         /* Glowing Background Blobs */
         .bg-blob {
             position: absolute;
-            width: 500px;
-            height: 500px;
+            width: 600px;
+            height: 600px;
             border-radius: 50%;
-            filter: blur(120px);
+            filter: blur(140px);
             z-index: 0;
             pointer-events: none;
-            opacity: 0.6;
+            opacity: 0.5;
         }
         .blob-1 {
-            top: -100px;
-            left: -100px;
+            top: -150px;
+            left: -150px;
             background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
         }
         .blob-2 {
-            top: 400px;
-            right: -100px;
+            top: 300px;
+            right: -150px;
             background: radial-gradient(circle, var(--secondary-glow) 0%, transparent 70%);
         }
 
@@ -66,6 +69,7 @@
             padding: 40px 20px;
             position: relative;
             z-index: 1;
+            flex: 1;
         }
 
         /* Header Card with Glassmorphism */
@@ -74,10 +78,10 @@
             border: 1px solid var(--card-border);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
-            border-radius: 24px;
-            padding: 40px;
+            border-radius: 20px;
+            padding: 30px 40px;
             margin-bottom: 30px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -88,21 +92,21 @@
         .header-left h1 {
             margin: 0;
             font-family: 'Outfit', sans-serif;
-            font-size: 2.8rem;
+            font-size: 2.2rem;
             font-weight: 800;
-            background: linear-gradient(135deg, #ffffff 30%, #a78bfa 70%, #22d3ee 100%);
+            background: linear-gradient(135deg, #ffffff 40%, #a78bfa 70%, #22d3ee 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
             display: flex;
             align-items: center;
             gap: 12px;
         }
 
         .header-left p {
-            margin: 10px 0 0 0;
+            margin: 8px 0 0 0;
             color: var(--text-secondary);
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 400;
         }
 
@@ -110,7 +114,6 @@
             display: flex;
             gap: 15px;
             align-items: center;
-            flex-wrap: wrap;
         }
 
         /* Action Buttons */
@@ -118,276 +121,219 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 12px 24px;
-            border-radius: 12px;
+            padding: 10px 20px;
+            border-radius: 10px;
             font-weight: 600;
             text-decoration: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 0.95rem;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            font-size: 0.9rem;
             cursor: pointer;
         }
 
         .btn-github {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--card-border);
             color: var(--text-primary);
         }
         .btn-github:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
+        }
+
+        /* Lavalink Block Integration */
+        .lavalink-config {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .lavalink-config h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            margin: 0 0 10px 0;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .lavalink-config p {
+            color: var(--text-secondary);
+            margin: 0 0 20px 0;
+            font-size: 0.95rem;
+        }
+
+        .code-container {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .code-container pre {
+            margin: 0;
+            padding: 20px;
+            background: #060709;
+            overflow-x: auto;
+        }
+
+        .code-container code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.88rem;
+            color: #e2e8f0;
+            line-height: 1.5;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 500;
+        }
+        .copy-btn:hover {
             background: rgba(255, 255, 255, 0.1);
             border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
         }
 
-        .btn-vercel {
-            background: #ffffff;
-            color: #000000;
-            border: 1px solid transparent;
-        }
-        .btn-vercel:hover {
-            background: #e2e8f0;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
-        }
-
-        /* Swagger Documentation Glass Container */
+        /* Documentation Wrapper */
         .doc-section {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-radius: 24px;
+            border-radius: 20px;
             padding: 30px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 40px;
         }
 
         .doc-section h2 {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin: 0 0 20px 0;
             font-weight: 700;
-            letter-spacing: -0.5px;
             color: #fff;
             border-left: 4px solid var(--accent-purple);
-            padding-left: 15px;
+            padding-left: 12px;
         }
 
-        /* ==========================================================================
-           SWAGGER UI DARK MODE CUSTOM OVERRIDES
-           ========================================================================== */
+        /* Footer */
+        footer {
+            margin-top: auto;
+            border-top: 1px solid var(--card-border);
+            padding: 24px 20px;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        footer p {
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        footer a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Swagger Custom Styling Overrides */
         .swagger-ui {
             font-family: 'Plus Jakarta Sans', sans-serif !important;
-            filter: invert(0) !important;
         }
-
-        /* Hide generic Title/Description of Swagger */
         .swagger-ui .info {
             display: none !important;
         }
-
-        /* Main Container Background override */
         .swagger-ui .scheme-container {
             background: transparent !important;
             box-shadow: none !important;
             border: none !important;
             padding: 0 0 20px 0 !important;
         }
-
         .swagger-ui select {
             background: rgba(255, 255, 255, 0.05) !important;
             color: #fff !important;
             border: 1px solid var(--card-border) !important;
             border-radius: 8px !important;
-            padding: 8px 12px !important;
         }
-
         .swagger-ui .opblock-tag-section {
             background: transparent !important;
         }
-
         .swagger-ui .opblock-tag {
             font-family: 'Outfit', sans-serif !important;
-            font-size: 1.4rem !important;
+            font-size: 1.2rem !important;
             color: #fff !important;
             border-bottom: 1px solid var(--card-border) !important;
             padding: 10px 0 !important;
         }
-
-        /* Block (Endpoint card) Styling */
         .swagger-ui .opblock {
-            background: rgba(255, 255, 255, 0.02) !important;
+            background: rgba(255, 255, 255, 0.01) !important;
             border: 1px solid var(--card-border) !important;
-            border-radius: 16px !important;
+            border-radius: 12px !important;
             margin-bottom: 15px !important;
             box-shadow: none !important;
-            transition: all 0.2s ease-in-out;
+            transition: all 0.2s ease;
         }
-
         .swagger-ui .opblock:hover {
-            border-color: rgba(255, 255, 255, 0.15) !important;
-            transform: translateY(-1px);
+            border-color: rgba(255, 255, 255, 0.12) !important;
         }
-
-        /* POST method block styling overrides */
         .swagger-ui .opblock.opblock-post {
-            border-color: rgba(16, 185, 129, 0.2) !important;
+            border-color: rgba(16, 185, 129, 0.15) !important;
         }
         .swagger-ui .opblock.opblock-post:hover {
-            border-color: rgba(16, 185, 129, 0.4) !important;
+            border-color: rgba(16, 185, 129, 0.3) !important;
         }
         .swagger-ui .opblock.opblock-post .opblock-summary {
-            background: rgba(16, 185, 129, 0.03) !important;
-            border-radius: 16px !important;
+            background: rgba(16, 185, 129, 0.02) !important;
         }
-
-        /* Method Badge Styling */
-        .swagger-ui .opblock .opblock-summary-method {
-            border-radius: 8px !important;
-            font-family: 'Outfit', sans-serif !important;
-            font-weight: 700 !important;
-            padding: 6px 16px !important;
-            font-size: 0.85rem !important;
-        }
-        
         .swagger-ui .opblock-summary-path {
             color: #fff !important;
             font-weight: 600 !important;
-            font-size: 1rem !important;
         }
-
         .swagger-ui .opblock-summary-description {
             color: var(--text-secondary) !important;
-            font-size: 0.9rem !important;
         }
-
-        /* Expand/Collapse arrow override */
-        .swagger-ui .authorization__btn svg,
-        .swagger-ui .arrow {
-            fill: #fff !important;
-        }
-
-        /* Block Body (Parameters, Responses) Styling */
         .swagger-ui .opblock-body {
-            background: rgba(0, 0, 0, 0.2) !important;
+            background: rgba(0, 0, 0, 0.15) !important;
             border-top: 1px solid var(--card-border) !important;
-            border-bottom-left-radius: 16px !important;
-            border-bottom-right-radius: 16px !important;
         }
-
-        .swagger-ui .opblock-description-wrapper p {
-            color: var(--text-secondary) !important;
-            font-size: 0.95rem !important;
-        }
-
-        /* Section Headings inside Block body */
-        .swagger-ui .opblock-section-header {
-            background: transparent !important;
-            border-bottom: 1px solid var(--card-border) !important;
-        }
-        .swagger-ui .opblock-section-header h4 {
-            color: #fff !important;
-            font-family: 'Outfit', sans-serif !important;
-        }
-
-        /* Parameters Table */
-        .swagger-ui table thead tr th, 
-        .swagger-ui table thead tr td {
-            color: var(--text-secondary) !important;
-            border-bottom: 2px solid var(--card-border) !important;
-        }
-        .swagger-ui table tbody tr td {
-            padding: 15px 0 !important;
-            border-bottom: 1px solid var(--card-border) !important;
-        }
-
         .swagger-ui .parameter__name {
             color: #fff !important;
-            font-weight: 600 !important;
         }
-        .swagger-ui .parameter__type {
-            color: var(--accent-purple) !important;
-        }
-
-        /* Inputs & Textareas */
-        .swagger-ui input[type=text],
-        .swagger-ui textarea {
+        .swagger-ui input[type=text], .swagger-ui textarea {
             background: rgba(255, 255, 255, 0.05) !important;
             border: 1px solid var(--card-border) !important;
-            border-radius: 8px !important;
             color: #fff !important;
-            padding: 10px !important;
-            outline: none !important;
+            border-radius: 6px !important;
         }
-        .swagger-ui input[type=text]:focus,
-        .swagger-ui textarea:focus {
-            border-color: var(--accent-purple) !important;
-        }
-
-        /* Buttons (Execute, Try it out) */
-        .swagger-ui .btn {
-            border-radius: 10px !important;
-            font-weight: 600 !important;
-            padding: 10px 20px !important;
-            font-size: 0.9rem !important;
-            transition: all 0.2s ease !important;
-        }
-        .swagger-ui .btn.try-out__btn {
-            border: 1px solid var(--accent-cyan) !important;
-            color: var(--accent-cyan) !important;
-            background: transparent !important;
-        }
-        .swagger-ui .btn.try-out__btn:hover {
-            background: rgba(6, 182, 212, 0.08) !important;
-        }
-
-        .swagger-ui .btn.execute {
-            background: var(--accent-purple) !important;
-            border-color: var(--accent-purple) !important;
-            color: #fff !important;
-            box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2) !important;
-        }
-        .swagger-ui .btn.execute:hover {
-            opacity: 0.9 !important;
-        }
-
-        .swagger-ui .btn.cancel {
-            background: #ef4444 !important;
-            border-color: #ef4444 !important;
-            color: #fff !important;
-        }
-
-        /* Code/Model formatting block */
-        .swagger-ui .model-box-control:focus, 
-        .swagger-ui .model-box-control {
-            outline: none !important;
-            color: #fff !important;
-        }
-        .swagger-ui .model {
-            color: var(--text-secondary) !important;
-        }
-        .swagger-ui .prop-type {
-            color: var(--accent-purple) !important;
-        }
-
-        /* JSON syntax highlighted values */
         .swagger-ui pre {
-            background: rgba(0, 0, 0, 0.4) !important;
-            border: 1px solid var(--card-border) !important;
-            border-radius: 12px !important;
-            padding: 15px !important;
-        }
-        .swagger-ui pre code {
-            color: #e2e8f0 !important;
-            font-family: 'Consolas', 'Monaco', monospace !important;
-        }
-
-        .swagger-ui .response-col_status {
-            color: #fff !important;
-            font-weight: 600 !important;
-        }
-
-        /* Live URL badge */
-        .swagger-ui .live-responses-table pre {
-            background: #0d0c15 !important;
+            background: #060709 !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            border-radius: 8px !important;
         }
     </style>
 </head>
@@ -397,25 +343,45 @@
     <div class="bg-blob blob-2"></div>
 
     <div class="container">
-        <!-- Modern Header -->
+        <!-- Header -->
         <header>
             <div class="header-left">
                 <h1>⚡ yt-cipher</h1>
                 <p>High-Performance Serverless YouTube Deciphering Service</p>
             </div>
             <div class="header-right">
-                <span style="color: var(--text-secondary); font-size: 1rem; font-weight: 500; display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border); padding: 10px 20px; border-radius: 12px;">
-                    💻 Developed by <strong style="color: #fff; font-family: 'Outfit', sans-serif;">Sagexdd</strong>
-                </span>
+                <a href="https://github.com/Sagexdd/yt-cipher" target="_blank" class="btn btn-github">
+                    <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                    GitHub
+                </a>
             </div>
         </header>
 
+        <!-- Lavalink Quick Integration Block -->
+        <section class="lavalink-config">
+            <h2>🎵 Lavalink Integration</h2>
+            <p>Add this configuration to your Lavalink <code>application.yml</code> under the plugins block:</p>
+            <div class="code-container">
+                <button class="copy-btn" onclick="copyConfig()">Copy</button>
+                <pre><code id="lavalink-code">plugins:
+  youtube:
+    remoteCipher:
+      url: "https://cipher.lavalink-harmonix.me/"
+      userAgent: "yt-cipher-client" # Optional</code></pre>
+            </div>
+        </section>
+
         <!-- Document Section -->
         <main class="doc-section">
-            <h2>API Documentation</h2>
+            <h2>API Playground</h2>
             <div id="swagger-ui"></div>
         </main>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Developed with ❤️ by <a href="https://github.com/Sagexdd" target="_blank">Sagexdd</a> | Licensed under MIT</p>
+    </footer>
 
     <!-- Swagger UI Scripts -->
     <script src="https://unpkg.com/swagger-ui-dist@3/swagger-ui-bundle.js"></script>
@@ -427,12 +393,21 @@
                 SwaggerUIBundle.presets.apis,
                 SwaggerUIBundle.SwaggerUIStandalonePreset
             ],
-            layout: "BaseLayout",
-            requestInterceptor: (req) => {
-                req.headers['User-Agent'] = 'gh-pages';
-                return req;
-            }
+            layout: "BaseLayout"
         });
+
+        function copyConfig() {
+            const codeText = document.getElementById('lavalink-code').textContent;
+            navigator.clipboard.writeText(codeText).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.textContent = 'Copied!';
+                btn.style.background = 'var(--accent-green)';
+                setTimeout(() => {
+                    btn.textContent = 'Copy';
+                    btn.style.background = 'rgba(255, 255, 255, 0.05)';
+                }, 2000);
+            });
+        }
     </script>
 </body>
 </html>
