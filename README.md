@@ -1,4 +1,4 @@
-# 🚀 yt-cipher (Vercel Hostable)
+# Yt-Cipher
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/badge/node-%3E%3D%2018.x-blue.svg)](https://nodejs.org/)
@@ -8,7 +8,7 @@ A high-performance, serverless Node.js & TypeScript port of Deno's `yt-cipher`. 
 
 ---
 
-## ⚡ Quick Deploy
+##  Quick Deploy
 
 Deploy your own instance of the cipher resolver to Vercel with a single click:
 
@@ -16,7 +16,7 @@ Deploy your own instance of the cipher resolver to Vercel with a single click:
 
 ---
 
-## 🌐 Public Instance
+##  Public Instance
 
 A public instance of this service is hosted and maintained for the community:
 
@@ -27,7 +27,7 @@ A public instance of this service is hosted and maintained for the community:
 
 ---
 
-## ✨ Features
+##  Features
 
 - **Vercel Serverless Ready**: Designed to fit seamlessly into stateless serverless functions without the need for worker pools.
 - **Fast & Lightweight Parser**: Uses `meriyah` and `astring` for blazing-fast AST parsing and code generation.
@@ -37,7 +37,7 @@ A public instance of this service is hosted and maintained for the community:
 
 ---
 
-## 🛠️ API Specification
+##  API Specification
 
 ### 1. Decrypt Signature
 Solve the signature and `n`-parameter challenge for a given player script.
@@ -104,7 +104,7 @@ Process a full YouTube stream URL, resolving both signature and `n`-parameter va
 
 ---
 
-## 🎵 Integration with Lavalink
+##  Integration with Lavalink
 
 To use this cipher service in your Lavalink setup:
 
@@ -121,7 +121,7 @@ To use this cipher service in your Lavalink setup:
 
 ---
 
-## ⚙️ Configuration & Environment Variables
+##  Configuration & Environment Variables
 
 You can customize runtime behavior using the following environment variables:
 
@@ -133,7 +133,7 @@ You can customize runtime behavior using the following environment variables:
 
 ---
 
-## 💻 Local Development
+##  Local Development
 
 1. **Clone the repository**:
    ```bash
@@ -152,6 +152,6 @@ You can customize runtime behavior using the following environment variables:
 
 ---
 
-## 📄 License
+##  License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
